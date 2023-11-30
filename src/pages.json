@@ -1,0 +1,66 @@
+{
+  "pages": [
+    //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+    {
+      "path": "pages/index/index",
+      "style": {}
+    },
+    {
+      "path": "pages/menu/index",
+      "style": {}
+    },
+    {
+      "path": "pages/fav/index",
+      "style": {}
+    },
+    {
+      "path": "pages/my/index",
+      "style": {}
+    },
+    {
+      "path": "pages/cart/index",
+      "style": {}
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "#FF7465",
+    "navigationBarTitleText": "Shopping",
+    "navigationBarBackgroundColor": "#FF7465",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "iconWidth": "40px",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "/static/logo/home.png",
+        "selectedIconPath": "/static/logo/home-fill.png",
+        "text": ""
+      },
+      {
+        "pagePath": "pages/menu/index",
+        "iconPath": "/static/logo/menu.png",
+        "selectedIconPath": "/static/logo/menu-fill.png",
+        "text": ""
+      },
+      {
+        "pagePath": "pages/fav/index",
+        "iconPath": "/static/logo/heart.png",
+        "selectedIconPath": "/static/logo/heart-fill.png",
+        "text": ""
+      },
+      {
+        "pagePath": "pages/cart/index",
+        "iconPath": "/static/logo/cart.png",
+        "selectedIconPath": "/static/logo/cart-fill.png",
+        "text": ""
+      },
+      {
+        "pagePath": "pages/my/index",
+        "iconPath": "/static/logo/user.png",
+        "selectedIconPath": "/static/logo/user-fill.png",
+        "text": ""
+      }
+    ]
+  }
+}
