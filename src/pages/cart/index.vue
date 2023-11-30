@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-const title = ref("cart");
+const title = ref("cart index");
 </script>
 
 <style>

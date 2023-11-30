@@ -2,13 +2,20 @@
   <view class="">
     <view class="uni-form-item uni-column">
       <view class="uni-input-wrapper">
+        <uni-icons type="search" size="22" color="#AAAAAA"></uni-icons>
         <input
           class="uni-input"
-          placeholder="带清除按钮的输入框"
+          placeholder="Find your product"
           :value="searchStr"
           @input="clearInput"
         />
-        <text class="uni-icon" v-if="showClearIcon" @click="clearIcon">&#xe434;</text>
+        <uni-icons
+          v-if="showClearIcon"
+          type="clear"
+          size="22"
+          color="#AAAAAA"
+          @click="clearIcon"
+        ></uni-icons>
       </view>
     </view>
 
@@ -23,27 +30,60 @@
         indicator-active-color="#FF7465"
       >
         <swiper-item>
-          <img src="/static/ad/1.jpg" alt="" />
-          <!-- <view class="swiper-item uni-bg-red">A</view> -->
+          <view class="swiper-item">
+            <img class="img" src="/static/ad/1.png" alt="" />
+          </view>
         </swiper-item>
         <swiper-item>
-          <img src="/static/ad/2.jpg" alt="" />
-          <!-- <view class="swiper-item uni-bg-green">B</view> -->
+          <view class="swiper-item">
+            <img class="img" src="/static/ad/2.png" alt="" />
+          </view>
         </swiper-item>
         <swiper-item>
-          <img src="/static/ad/3.jpg" alt="" />
-          <!-- <view class="swiper-item uni-bg-blue">C</view> -->
+          <view class="swiper-item">
+            <img class="img" src="/static/ad/3.png" alt="" />
+          </view>
         </swiper-item>
       </swiper>
+    </view>
+
+    <view class="tag-wrap">
+      <view
+        v-for="tag in tagList"
+        :key="tag"
+        :class="['tag-item', { 'tag-item--active': tag === curTag }]"
+        @click="searchByTag(tag)"
+      >
+        {{ tag }}
+      </view>
+    </view>
+
+    <view class="good-wrap">
+      <good-item v-for="good in curList" :key="good.id" :good="good" />
     </view>
   </view>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { getGood } from "@/pages/api/index";
+import type { Good } from "@/types/index";
+import goodItem from "@/pages/index/good-item.vue";
+
+const tagList = ["All", "Top", "Lastest"];
+
 const searchStr = ref("");
 const showClearIcon = ref(false);
+const curTag = ref(tagList[0]);
 
+const list = ref<Good[]>([]);
+const curList = ref(list.value);
+
+onMounted(init);
+
+function init() {
+  list.value = getGood();
+  curList.value = [...list.value];
+}
 function clearInput(event: Event) {
   searchStr.value = event.detail.value;
   if (event.detail.value.length > 0) {
@@ -56,50 +96,76 @@ function clearIcon() {
   searchStr.value = "";
   showClearIcon.value = false;
 }
+function searchByTag(tag: string) {
+  curTag.value = tag;
+  const tagId = tag.toLowerCase();
+  if (tagId === "all") {
+    curList.value = [...list.value];
+    return;
+  }
+  curList.value = list.value.filter((item) => item.tag === tagId);
+}
 </script>
 
-<style>
+<style lang="scss" scoped>
 .uni-margin-wrap {
-  width: 690rpx;
   width: 100%;
+  margin-top: 20px;
 }
 .swiper {
   height: 300rpx;
 }
 .swiper-item {
-  display: block;
+  // display: block;
   height: 300rpx;
-  line-height: 300rpx;
+  // line-height: 300rpx;
   text-align: center;
+  border-radius: 30px;
+  overflow: hidden;
+  .img {
+    width: 100%;
+    height: 300rpx;
+    object-fit: cover;
+  }
 }
 .swiper-list {
-  margin-top: 40rpx;
+  margin-top: 20px;
   margin-bottom: 0;
 }
-
-.content {
+.uni-input-wrapper {
+  /* #ifndef APP-NVUE */
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  /* #endif */
+  padding: 8px 13px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  background-color: #f7f8fb;
+  border-radius: 30px;
+  overflow: hidden;
 }
-
-.logo {
-  height: 200rpx;
-  width: 200rpx;
-  margin-top: 200rpx;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 50rpx;
+.uni-input {
+  height: 28px;
+  line-height: 28px;
+  font-size: 14px;
+  padding: 0px 10px;
+  flex: 1;
+  background-color: #f7f8fb;
 }
-
-.text-area {
-  display: flex;
-  justify-content: center;
+.tag-wrap {
+  margin: 20px 0;
 }
-
-.title {
-  font-size: 36rpx;
-  color: #8f8f94;
+.tag-item {
+  padding: 4px 10px;
+  display: inline-block;
+  font-size: 16px;
+  line-height: 24px;
+  border-radius: 16px;
+  margin-right: 8px;
+  background-color: #f7f8fb;
+  color: #aaaaaa;
+}
+.tag-item--active {
+  background-color: #ff7465;
+  color: white;
 }
 </style>

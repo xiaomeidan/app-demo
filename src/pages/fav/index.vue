@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-const title = ref("favourite");
+const title = ref("favourite index");
 </script>
 
 <style>

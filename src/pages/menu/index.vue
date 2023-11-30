@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-const title = ref("menu");
+const title = ref("menu index");
 </script>
 
 <style>
