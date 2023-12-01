@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onLaunch, onShow, onHide } from "@dcloudio/uni-app";
+const globalData = { primaryColor: "#FF7465" };
 onLaunch(() => {
   console.log("App Launch");
 });

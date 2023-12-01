@@ -8,7 +8,7 @@ export default defineConfig({
     uni(),
     AutoImport({
       dts: "src/auto-imports.d.ts",
-      imports: ["vue", "uni-app"],
+      imports: ["vue", "uni-app", "pinia"],
     }),
   ],
 });

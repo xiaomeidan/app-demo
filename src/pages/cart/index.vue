@@ -1,14 +1,16 @@
 <template>
   <view class="content">
     <view class="text-area">
-      <text class="title">{{ title }}</text>
+      <text class="title">{{ cart }}</text>
     </view>
   </view>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-const title = ref("cart index");
+import useCartStore from "@/stores/cart";
+
+const cartStore = useCartStore();
+const { cart } = storeToRefs(cartStore);
 </script>
 
 <style>

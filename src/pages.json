@@ -7,19 +7,27 @@
     },
     {
       "path": "pages/menu/index",
-      "style": {}
+      "style": {
+        "navigationBarTitleText": "Menu"
+      }
     },
     {
       "path": "pages/fav/index",
-      "style": {}
+      "style": {
+        "navigationBarTitleText": "Favourite"
+      }
     },
     {
       "path": "pages/my/index",
-      "style": {}
+      "style": {
+        "navigationBarTitleText": "My"
+      }
     },
     {
       "path": "pages/cart/index",
-      "style": {}
+      "style": {
+        "navigationBarTitleText": "Cart"
+      }
     }
   ],
   "globalStyle": {
