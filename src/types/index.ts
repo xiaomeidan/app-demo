@@ -5,3 +5,7 @@ export interface Good {
   tag: "top" | "lastest";
   price: number;
 }
+
+export interface Cart extends Good {
+  count: number;
+}

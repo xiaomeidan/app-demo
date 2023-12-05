@@ -12,7 +12,7 @@ import dataImg from "@/static/empty/data.png";
 import cartImg from "@/static/empty/cart.png";
 
 const props = defineProps<{
-  type: string;
+  type: "fav" | "data" | "cart";
 }>();
 
 const emptyMap = {
@@ -26,7 +26,7 @@ const emptyMap = {
     subTitle: "",
     img: dataImg,
   },
-  data: {
+  cart: {
     title: "Empty Basket",
     subTitle: "Your basket is still empty, browse the attractive promos from bardeal",
     img: cartImg,

@@ -1,6 +1,5 @@
 <template>
   <view :class="['good', `good-${margin}`]">
-    {{ primaryColor }}
     <view class="img-wrap">
       <image class="img" mode="aspectFill" :src="good.img" />
       <view class="fav" @click="toggleFav">
